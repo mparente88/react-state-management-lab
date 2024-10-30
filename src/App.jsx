@@ -13,6 +13,7 @@ const App = () => {
       strength: 6,
       agility: 4,
       img: "https://via.placeholder.com/150/92c952",
+      id: 1,
     },
     {
       name: "Scavenger",
@@ -20,6 +21,7 @@ const App = () => {
       strength: 5,
       agility: 5,
       img: "https://via.placeholder.com/150/771796",
+      id: 2,
     },
     {
       name: "Shadow",
@@ -27,6 +29,7 @@ const App = () => {
       strength: 7,
       agility: 8,
       img: "https://via.placeholder.com/150/24f355",
+      id: 3,
     },
     {
       name: "Tracker",
@@ -34,6 +37,7 @@ const App = () => {
       strength: 7,
       agility: 6,
       img: "https://via.placeholder.com/150/d32776",
+      id: 4,
     },
     {
       name: "Sharpshooter",
@@ -41,6 +45,7 @@ const App = () => {
       strength: 6,
       agility: 8,
       img: "https://via.placeholder.com/150/1ee8a4",
+      id: 5,
     },
     {
       name: "Medic",
@@ -48,6 +53,7 @@ const App = () => {
       strength: 5,
       agility: 7,
       img: "https://via.placeholder.com/150/66b7d2",
+      id: 6,
     },
     {
       name: "Engineer",
@@ -55,6 +61,7 @@ const App = () => {
       strength: 6,
       agility: 5,
       img: "https://via.placeholder.com/150/56acb2",
+      id: 7,
     },
     {
       name: "Brawler",
@@ -62,6 +69,7 @@ const App = () => {
       strength: 8,
       agility: 3,
       img: "https://via.placeholder.com/150/8985dc",
+      id: 8,
     },
     {
       name: "Infiltrator",
@@ -69,6 +77,7 @@ const App = () => {
       strength: 5,
       agility: 9,
       img: "https://via.placeholder.com/150/392537",
+      id: 9,
     },
     {
       name: "Leader",
@@ -76,19 +85,16 @@ const App = () => {
       strength: 7,
       agility: 6,
       img: "https://via.placeholder.com/150/602b9e",
+      id: 10,
     },
   ])
 
   const handleAddFighter = (newFighter) => {
     if (money >= newFighter.price) {
-      const newMoney = money - newFighter.price
-      const newTotalStrength = totalStrength + newFighter.strength
-      const newTotalAgility = totalAgility + newFighter.agility
-      const newTeam = [...team, newFighter]
-      setTeam(newTeam)
-      setTotalStrength(newTotalStrength)
-      setTotalAgility(newTotalAgility)
-      setMoney(newMoney)
+      setTeam([...team, newFighter])
+      setTotalStrength(totalStrength + newFighter.strength)
+      setTotalAgility(totalAgility + newFighter.agility)
+      setMoney(money - newFighter.price)
     } else {
       console.log("Not enough money.")
     }
@@ -99,14 +105,13 @@ const App = () => {
 
     if (fighterExists) {
       const newTeam = team.filter((fighter) => fighter.id !== oldFighter.id)
-      const newMoney = money + oldFighter.price
-      const newTotalStrength = totalStrength - oldFighter.strength
-      const newTotalAgility = totalAgility - oldFighter.agility
 
-      setTotalStrength(newTotalStrength)
-      setTotalAgility(newTotalAgility)
-      setMoney(newMoney)
+      setTotalStrength(totalStrength - oldFighter.strength)
+      setTotalAgility(totalAgility - oldFighter.agility)
+      setMoney(money + oldFighter.price)
       setTeam(newTeam)
+    } else {
+      console.log("You do not have that fighter.")
     }
   }
 
